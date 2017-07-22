@@ -16,10 +16,12 @@ apt_maybe_install_gpu_firmware() {
 
 apt_setup() {
   for package in \
+    curl \
     git \
     htop \
     iftop \
     iotop \
+    jq \
     ltrace \
     strace \
     vim \
