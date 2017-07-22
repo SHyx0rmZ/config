@@ -1,20 +1,16 @@
 apt_maybe_install() {
-  echo $- | grep e > /dev/null
-
-  local ERR_STATUS=$?
-
-  if [ ${ERR_STATUS} -eq 0 ]; then
-    set +e
-  fi
-
   dpkg-query -l "${1}" > /dev/null 2>&1
 
   if [ $? -ne 0 ]; then
     sudo apt install "${1}"
   fi
+}
 
-  if [ ${ERR_STATUS} -eq 0 ]; then
-    set -e
+apt_maybe_install_gpu_firmware() {
+  lspci | grep -E 'VGA\b.*\bAMD\b.*\bRadeon\b' > /dev/null
+
+  if [ $? -eq 0 ]; then
+    apt_maybe_install firmware-amd-graphics
   fi
 }
 
@@ -28,6 +24,8 @@ apt_setup() {
     strace \
     vim \
   ; do
-    apt_maybe_install "${package}"
+    helper_dontfail apt_maybe_install "${package}"
   done
+
+  helper_dontfail apt_maybe_install_gpu_firmware
 }
