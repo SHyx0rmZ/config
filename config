@@ -30,7 +30,11 @@ provide_basics() {
 
     git clone git://github.com/SHyx0rmZ/config "${TARGET_DIR}"
 
-    source "${TARGET_DIR}/config"
+    sudo ln -s "${TARGET_DIR}/config" /usr/local/bin/config
+
+    cd "${TARGET_DIR}"
+
+    exec "${TARGET_DIR}/config"
   fi
 
   echo Hi
