@@ -12,11 +12,15 @@ apt_maybe_install() {
 
 provide_basics() {
   if [ ! -f "$(realpath "${0}" | xargs dirname)/.shyxormz" ]; then
+    set +e
+
     dpkg-query -l git > /dev/null 2>&1
 
     if [ $? -ne 0 ]; then
       sudo apt install git
     fi
+
+    set -e
 
     read -p "Where should the config repository be cloned to? (${HOME}/.local/config): " TARGET_DIR
 
