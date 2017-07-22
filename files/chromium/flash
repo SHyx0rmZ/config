@@ -1,0 +1,6 @@
+FLASH_LIBRARY="/usr/local/lib/adobe-flashplugin/libpepflashplayer.so"
+FLASH_VERSION="$(jq -r .version /usr/local/lib/adobe-flashplugin/manifest.json)"
+
+if [ -f "${FLASH_LIBRARY}" ]; then
+  export CHROMIUM_FLAGS="${CHROMIUM_FLAGS} --ppapi-flash-path=\"${FLASH_LIBRARY}\" --ppapi-flash-version=\"${FLASH_VERSION}\""
+fi

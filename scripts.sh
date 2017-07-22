@@ -15,9 +15,11 @@ helper_dontfail() {
 }
 
 source "${CONFIG_DIR}/scripts/apt.sh"
+source "${CONFIG_DIR}/scripts/flash.sh"
 source "${CONFIG_DIR}/scripts/git.sh"
 source "${CONFIG_DIR}/scripts/shell.sh"
 
 apt_setup
+flash_setup
 git_configure
 shell_setup
