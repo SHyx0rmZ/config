@@ -22,6 +22,7 @@ apt_setup() {
     iftop \
     iotop \
     jq \
+    libavcodec-extra \
     ltrace \
     strace \
     vim \
