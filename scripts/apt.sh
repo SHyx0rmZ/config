@@ -1,5 +1,5 @@
 apt_maybe_install() {
-  dpkg-query -l "${1}" > /dev/null 2>&1
+  dpkg-query -s "${1}" > /dev/null 2>&1
 
   if [ $? -ne 0 ]; then
     sudo apt install "${1}"
