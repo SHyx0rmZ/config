@@ -37,6 +37,10 @@ provide_basics() {
     exec "${TARGET_DIR}/config"
   fi
 
+  if [ "$(git pull)" != "Already up-to-date." ]; then
+    exec "${0}"
+  fi
+
   echo -e "\033[32mWelcome to SHyx0rmZ' config management system\033[0m"
 
   for package in git htop iftop iotop ltrace strace vim; do
