@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -eu
 
 apt_maybe_install() {
   echo $- | grep e > /dev/null
