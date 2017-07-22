@@ -37,7 +37,7 @@ provide_basics() {
     exec "${TARGET_DIR}/config"
   fi
 
-  echo Hi
+  echo -e "\033[32mWelcome to SHyx0rmZ' config management system\033[0m"
 
   for package in git htop iftop iotop ltrace strace vim; do
     apt_maybe_install "${package}"
