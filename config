@@ -2,28 +2,10 @@
 
 set -eu
 
-apt_maybe_install() {
-  echo $- | grep e > /dev/null
-
-  local ERR_STATUS=$?
-
-  if [ ${ERR_STATUS} -eq 0 ]; then
-    set +e
-  fi
-
-  dpkg-query -l "${1}" > /dev/null 2>&1
-
-  if [ $? -ne 0 ]; then
-    sudo apt install "${1}"
-  fi
-
-  if [ ${ERR_STATUS} -eq 0 ]; then
-    set -e
-  fi
-}
-
 provide_basics() {
-  if [ ! -f "$(realpath "${0}" | xargs dirname)/.shyxormz" ]; then
+  CONFIG_DIR="$(realpath "${0}" | xargs dirname)"
+
+  if [ ! -f "${CONFIG_DIR}/.shyxormz" ]; then
     set +e
 
     dpkg-query -l git > /dev/null 2>&1
@@ -54,6 +36,8 @@ provide_basics() {
   fi
 
   echo -e "\033[32mWelcome to SHyx0rmZ' config management system\033[0m"
+
+  source "${CONFIG_DIR}/scripts.sh"
 
   for package in git htop iftop iotop ltrace strace vim; do
     apt_maybe_install "${package}"
