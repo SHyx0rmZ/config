@@ -1,14 +1,39 @@
 #!/bin/bash
 
+set -e
+
+apt_maybe_install() {
+  dpkg-query -l "${1}" > /dev/null 2>&1
+
+  if [ $? -ne 0 ]; then
+    sudo apt install "${1}"
+  fi
+}
+
 provide_basics() {
-  sudo apt install \
-    git \
-    htop \
-    iftop \
-    iotop \
-    ltrace \
-    strace \
-    vim
+  if [ ! -f .shyxormz ]; then
+    dpkg-query -l git > /dev/null 2>&1
+
+    if [ $? -ne 0 ]; then
+      sudo apt install git
+    fi
+
+    read -p "Where should the config repository be cloned to? (${HOME}/.local/config): " TARGET_DIR
+
+    if [ "${TARGET_DIR}" = "" ]; then
+      TARGET_DIR="${HOME}/.local/config"
+    fi
+
+    git clone git://github.com/SHyx0rmZ/config "${TARGET_DIR}"
+
+    source "${TARGET_DIR}/config"
+  fi
+
+  echo Hi
+
+  for package in git htop iftop iotop ltrace strace vim; do
+    apt_maybe_install "${package}"
+  done
 }
 
 provide_basics
