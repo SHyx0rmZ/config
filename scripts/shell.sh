@@ -27,7 +27,9 @@ shell_configure_rc_d() {
     bash -c "cat \"${CONFIG_DIR}/files/bashrcd.sh\" >> ${HOME}/.bashrc"
   fi
 
-  sudo mkdir -p /etc/bashrc.d
+  if [ ! -d /etc/bashrc.d ]; then
+    sudo mkdir -p /etc/bashrc.d
+  fi
 }
 
 shell_setup() {
