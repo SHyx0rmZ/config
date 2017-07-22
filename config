@@ -1,0 +1,14 @@
+#!/bin/bash
+
+provide_basics() {
+  sudo apt install \
+    git \
+    htop \
+    iftop \
+    iotop \
+    ltrace \
+    strace \
+    vim
+}
+
+provide_basics
