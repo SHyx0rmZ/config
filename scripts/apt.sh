@@ -18,3 +18,16 @@ apt_maybe_install() {
   fi
 }
 
+apt_setup() {
+  for package in \
+    git \
+    htop \
+    iftop \
+    iotop \
+    ltrace \
+    strace \
+    vim \
+  ; do
+    apt_maybe_install "${package}"
+  done
+}
