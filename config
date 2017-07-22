@@ -2,7 +2,7 @@
 
 set -eu
 
-provide_basics() {
+config_setup() {
   CONFIG_DIR="$(realpath "${0}" | xargs dirname)"
 
   if [ ! -f "${CONFIG_DIR}/.shyxormz" ]; then
@@ -44,4 +44,4 @@ provide_basics() {
   done
 }
 
-provide_basics
+config_setup
