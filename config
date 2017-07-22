@@ -11,7 +11,7 @@ apt_maybe_install() {
 }
 
 provide_basics() {
-  if [ ! -f .shyxormz ]; then
+  if [ ! -f "$(realpath "${0}" | xargs dirname)/.shyxormz" ]; then
     dpkg-query -l git > /dev/null 2>&1
 
     if [ $? -ne 0 ]; then
