@@ -31,6 +31,8 @@ config_setup() {
     exec "${TARGET_DIR}/config"
   fi
 
+  cd "${CONFIG_DIR}"
+
   if [ "$(git pull)" != "Already up-to-date." ]; then
     exec "${0}"
   fi
