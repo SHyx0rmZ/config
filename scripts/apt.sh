@@ -6,6 +6,18 @@ apt_maybe_install() {
   fi
 }
 
+apt_maybe_install_direnv() {
+  helper_dontfail apt_maybe_install direnv
+
+  if [ -d /etc/bashrc.d ]; then
+    if [ ! -f /etc/bashrc.d/direnv.sh ]; then
+      sudo cp "${CONFIG_DIR}/files/direnv.sh" /etc/bashrc.d/direnv.sh
+    fi
+
+    source /etc/bashrc.d/direnv.sh
+  fi
+}
+
 apt_maybe_install_gpu_firmware() {
   lspci | grep -E 'VGA\b.*\bAMD\b.*\bRadeon\b' > /dev/null
 
@@ -18,7 +30,6 @@ apt_setup() {
   for package in \
     build-essential \
     dfc \
-    direnv \
     curl \
     git \
     htop \
@@ -35,11 +46,5 @@ apt_setup() {
 
   helper_dontfail apt_maybe_install_gpu_firmware
 
-  if [ -d /etc/bashrc.d ]; then
-    if [ ! -f /etc/bashrc.d/direnv.sh ]; then
-      sudo cp "${CONFIG_DIR}/files/direnv.sh" /etc/bashrc.d/direnv.sh
-    fi
-
-    source /etc/bashrc.d/direnv.sh
-  fi
+  apt_maybe_install_direnv
 }
