@@ -29,8 +29,8 @@ source "${CONFIG_DIR}/scripts/git.sh"
 source "${CONFIG_DIR}/scripts/shell.sh"
 source "${CONFIG_DIR}/scripts/vim.sh"
 
-setup apt
-setup flash
-setup git
 setup shell
+setup apt
+setup git
 setup vim
+setup flash
