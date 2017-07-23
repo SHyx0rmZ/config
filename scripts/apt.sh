@@ -47,6 +47,7 @@ apt_setup() {
     libavcodec-extra \
     ltrace \
     strace \
+    vlc \
     vim \
   ; do
     helper_dontfail apt_maybe_install "${package}"
