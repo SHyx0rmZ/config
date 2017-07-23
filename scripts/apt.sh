@@ -17,6 +17,7 @@ apt_maybe_install_gpu_firmware() {
 apt_setup() {
   for package in \
     build-essential \
+    dfc \
     direnv \
     curl \
     git \
