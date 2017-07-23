@@ -22,6 +22,6 @@ source "${CONFIG_DIR}/scripts/vim.sh"
 
 apt_setup
 flash_setup
-git_configure
+git_setup
 shell_setup
 vim_setup
