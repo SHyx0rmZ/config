@@ -33,4 +33,12 @@ apt_setup() {
   done
 
   helper_dontfail apt_maybe_install_gpu_firmware
+
+  if [ -d /etc/bashrc.d ]; then
+    if [ ! -f /etc/bashrc.d/direnv.sh ]; then
+      sudo cp "${CONFIG_DIR}/files/direnv.sh" /etc/bashrc.d/direnv.sh
+    fi
+
+    source /etc/bashrc.d/direnv.sh
+  fi
 }
