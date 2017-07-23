@@ -27,9 +27,11 @@ apt_maybe_install_gpu_firmware() {
 }
 
 apt_maybe_install_terminator() {
+  helper_dontfail apt_maybe_install python3-configobj
   helper_dontfail apt_maybe_install terminator
 
   gsettings set org.mate.applications-terminal exec terminator
+  python3 "${CONFIG_DIR}/files/terminator-config.py"
 }
 
 apt_setup() {
