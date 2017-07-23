@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eu
+set -e
 
 config_setup() {
   CONFIG_DIR="$(realpath "${0}" | xargs dirname)"
