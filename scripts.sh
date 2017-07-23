@@ -9,9 +9,13 @@ helper_dontfail() {
 
   "$@"
 
+  local EXIT_STATUS=$?
+
   if [ ${ERR_STATUS} -eq 0 ]; then
     set -e
   fi
+
+  return ${EXIT_STATUS}
 }
 
 setup() {
