@@ -14,14 +14,19 @@ helper_dontfail() {
   fi
 }
 
+setup() {
+  echo -e "- setting up \033[32m${1}\033[0m"
+  ${1}_setup
+}
+
 source "${CONFIG_DIR}/scripts/apt.sh"
 source "${CONFIG_DIR}/scripts/flash.sh"
 source "${CONFIG_DIR}/scripts/git.sh"
 source "${CONFIG_DIR}/scripts/shell.sh"
 source "${CONFIG_DIR}/scripts/vim.sh"
 
-apt_setup
-flash_setup
-git_setup
-shell_setup
-vim_setup
+setup apt
+setup flash
+setup git
+setup shell
+setup vim
