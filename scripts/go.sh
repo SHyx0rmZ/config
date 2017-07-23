@@ -77,10 +77,16 @@ go_env_setup() {
   fi
 }
 
+go_install_packages() {
+  go get github.com/Masterminds/glide
+}
+
 go_setup() {
   if go_update_available; then
     go_update
   fi
 
   go_env_setup
+
+  go_install_packages
 }
