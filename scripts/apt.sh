@@ -26,6 +26,12 @@ apt_maybe_install_gpu_firmware() {
   fi
 }
 
+apt_maybe_install_terminator() {
+  helper_dontfail apt_maybe_install terminator
+
+  gsettings set org.mate.applications-terminal exec terminator
+}
+
 apt_setup() {
   for package in \
     build-essential \
@@ -47,4 +53,5 @@ apt_setup() {
   helper_dontfail apt_maybe_install_gpu_firmware
 
   apt_maybe_install_direnv
+  apt_maybe_install_terminator
 }
