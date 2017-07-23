@@ -81,6 +81,7 @@ go_env_setup() {
 
 go_install_packages() {
   go get github.com/Masterminds/glide
+  go get github.com/onsi/ginkgo/ginkgo
 }
 
 go_setup() {
