@@ -24,6 +24,7 @@ setup() {
 }
 
 source "${CONFIG_DIR}/scripts/apt.sh"
+source "${CONFIG_DIR}/scripts/elm.sh"
 source "${CONFIG_DIR}/scripts/flash.sh"
 source "${CONFIG_DIR}/scripts/git.sh"
 source "${CONFIG_DIR}/scripts/go.sh"
@@ -38,3 +39,4 @@ setup vim
 setup flash
 setup go
 setup node
+setup elm
