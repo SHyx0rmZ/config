@@ -71,7 +71,9 @@ go_env_setup() {
   if [ -d /etc/bashrc.d ]; then
     if [ ! -f /etc/bashrc.d/golang.sh ]; then
       sudo cp "${CONFIG_DIR}/files/golang.sh" /etc/bashrc.d/golang.sh
+    fi
 
+    if [ -z "${GOPATH}" ]; then
       source /etc/bashrc.d/golang.sh
     fi
   fi
