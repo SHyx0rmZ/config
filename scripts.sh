@@ -27,6 +27,7 @@ source "${CONFIG_DIR}/scripts/apt.sh"
 source "${CONFIG_DIR}/scripts/flash.sh"
 source "${CONFIG_DIR}/scripts/git.sh"
 source "${CONFIG_DIR}/scripts/go.sh"
+source "${CONFIG_DIR}/scripts/node.sh"
 source "${CONFIG_DIR}/scripts/shell.sh"
 source "${CONFIG_DIR}/scripts/vim.sh"
 
@@ -36,3 +37,4 @@ setup git
 setup vim
 setup flash
 setup go
+setup node
