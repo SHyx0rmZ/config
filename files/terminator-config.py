@@ -6,4 +6,5 @@ filename = environ['HOME'] + '/.config/terminator/config'
 config = ConfigObj(filename)
 config['profiles']['default']['font'] = 'Monospace 10'
 config['profiles']['default']['use_system_font'] = 'False'
+config['profiles']['default']['scrollback_infinite'] = 'True'
 config.write()
