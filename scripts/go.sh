@@ -1,5 +1,5 @@
 go_cache_valid() {
-  sha256sum --check --status "${CONFIG_DIR}/cache/go.sha256"
+  sha256sum --check --status "${CONFIG_DIR}/cache/go.sha256" 2> /dev/null
 }
 
 go_cache_update() {
