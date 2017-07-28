@@ -1,3 +1,13 @@
+shell_configure_path() {
+  if [ ! -d "${HOME}/work/utils/bin" ]; then
+    mkdir -p "${HOME}/work/utils/bin"
+  fi
+
+  if [ ! -f /etc/bashrc.d/bin.sh ]; then
+    sudo cp "${CONFIG_DIR}/files/bin.sh" /etc/bashrc.d/bin.sh
+  fi
+}
+
 shell_configure_prompt() {
   if [ ! -f /etc/bashrc.d/prompt.sh ]; then
     sudo cp "${CONFIG_DIR}/files/prompt.sh" /etc/bashrc.d/prompt.sh
@@ -35,4 +45,5 @@ shell_configure_rc_d() {
 shell_setup() {
   helper_dontfail shell_configure_rc_d
   helper_dontfail shell_configure_prompt
+  helper_dontfail shell_configure_path
 }
