@@ -1,12 +1,12 @@
 shell_add_binary() {
-  if [ ! -f "${HOME}/work/utils/$(basename "$1")" ]; then
-    cp "$1" "${HOME}/work/utils/$(basename "$1")"
+  if [ ! -f "${HOME}/work/utils/bin/$(basename "$1")" ]; then
+    cp "$1" "${HOME}/work/utils/bin/$(basename "$1")"
   fi
 }
 
 shell_add_binary_link() {
-  if [ ! -h "${HOME}/work/utils/$(basename "$1")" ]; then
-    ln -s "$1" "${HOME}/work/utils/$(basename "$1")"
+  if [ ! -h "${HOME}/work/utils/bin/$(basename "$1")" ]; then
+    ln -s "$1" "${HOME}/work/utils/bin/$(basename "$1")"
   fi
 }
 
