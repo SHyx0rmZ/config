@@ -1,3 +1,15 @@
+shell_add_binary() {
+  if [ ! -f "${HOME}/work/utils/$(basename "$1")" ]; then
+    cp "$1" "${HOME}/work/utils/$(basename "$1")"
+  fi
+}
+
+shell_add_binary_link() {
+  if [ ! -h "${HOME}/work/utils/$(basename "$1")" ]; then
+    ln -s "$1" "${HOME}/work/utils/$(basename "$1")"
+  fi
+}
+
 shell_configure_path() {
   if [ ! -d "${HOME}/work/utils/bin" ]; then
     mkdir -p "${HOME}/work/utils/bin"
