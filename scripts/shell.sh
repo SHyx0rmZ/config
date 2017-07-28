@@ -10,6 +10,10 @@ shell_add_binary_link() {
   fi
 }
 
+shell_configure_composer_wrapper() {
+  shell_add_binary_link "${CONFIG_DIR}/modules/sh-composer-wrapper/composer"
+}
+
 shell_configure_path() {
   if [ ! -d "${HOME}/work/utils/bin" ]; then
     mkdir -p "${HOME}/work/utils/bin"
@@ -58,4 +62,6 @@ shell_setup() {
   helper_dontfail shell_configure_rc_d
   helper_dontfail shell_configure_prompt
   helper_dontfail shell_configure_path
+
+  shell_configure_composer_wrapper
 }

@@ -1,0 +1,3 @@
+[submodule "modules/sh-composer-wrapper"]
+	path = modules/sh-composer-wrapper
+	url = git://github.com/SHyx0rmZ/sh-composer-wrapper
