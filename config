@@ -37,6 +37,8 @@ config_setup() {
     exec "${0}"
   fi
 
+  git submodule update --init > /dev/null 2>&1
+
   echo -e "\033[32mWelcome to SHyx0rmZ' config management system\033[0m"
 
   source "${CONFIG_DIR}/scripts.sh"
