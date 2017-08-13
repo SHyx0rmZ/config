@@ -18,6 +18,10 @@ helper_dontfail() {
   return ${EXIT_STATUS}
 }
 
+helper_sudo() {
+  sudo -k -p "$(echo -e "Trying to execute: \033[36msudo $(echo "$@" | sed 's/%/%%/g')\033[0m\n[sudo] password for %p: ")" "$@"
+}
+
 setup() {
   echo -e "- setting up \033[32m${1}\033[0m"
   ${1}_setup

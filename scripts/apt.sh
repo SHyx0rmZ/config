@@ -2,7 +2,7 @@ apt_maybe_install() {
   dpkg-query -s "${1}" > /dev/null 2>&1
 
   if [ $? -ne 0 ]; then
-    sudo apt install "${1}"
+    helper_sudo "apt install \"${1}\""
   fi
 }
 
@@ -11,7 +11,7 @@ apt_maybe_install_direnv() {
 
   if [ -d /etc/bashrc.d ]; then
     if [ ! -f /etc/bashrc.d/direnv.sh ]; then
-      sudo cp "${CONFIG_DIR}/files/direnv.sh" /etc/bashrc.d/direnv.sh
+      helper_sudo "cp \"${CONFIG_DIR}/files/direnv.sh\" /etc/bashrc.d/direnv.sh"
     fi
 
     source /etc/bashrc.d/direnv.sh

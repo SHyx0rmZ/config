@@ -52,12 +52,12 @@ go_update() {
   if [ -d /usr/local/go ]; then
     echo -e "  - \033[31mremoving\033[0m Go $(echo $(go_current_version) | cut -f3 -d' ' | cut -f2 -do)"
 
-    sudo rm -r /usr/local/go
+    helper_sudo "rm -r /usr/local/go"
   fi
 
   echo -e "  - \033[32minstalling\033[0m Go $(echo $(go_newest_version) | cut -f1 -dl | cut -f2 -do | sed 's/\.$//')"
 
-  sudo tar -C /usr/local -xzf "${CONFIG_DIR}/cache/go.tar.gz"
+  helper_sudo "tar -C /usr/local -xzf \"${CONFIG_DIR}/cache/go.tar.gz\""
 
   rm "${CONFIG_DIR}/cache/go.tar.gz"
   rm "${CONFIG_DIR}/cache/go.tar.gz.sha256"
@@ -70,7 +70,7 @@ go_env_setup() {
 
   if [ -d /etc/bashrc.d ]; then
     if [ ! -f /etc/bashrc.d/golang.sh ]; then
-      sudo cp "${CONFIG_DIR}/files/golang.sh" /etc/bashrc.d/golang.sh
+      helper_sudo "cp \"${CONFIG_DIR}/files/golang.sh\" /etc/bashrc.d/golang.sh"
     fi
 
     if [ -z "${GOPATH}" ]; then
