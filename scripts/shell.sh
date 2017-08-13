@@ -20,13 +20,13 @@ shell_configure_path() {
   fi
 
   if [ ! -f /etc/bashrc.d/bin.sh ]; then
-    helper_sudo "cp \"${CONFIG_DIR}/files/bin.sh\" /etc/bashrc.d/bin.sh"
+    helper_sudo cp "${CONFIG_DIR}/files/bin.sh" /etc/bashrc.d/bin.sh
   fi
 }
 
 shell_configure_prompt() {
   if [ ! -f /etc/bashrc.d/prompt.sh ]; then
-    helper_sudo "cp \"${CONFIG_DIR}/files/prompt.sh\" /etc/bashrc.d/prompt.sh"
+    helper_sudo cp "${CONFIG_DIR}/files/prompt.sh" /etc/bashrc.d/prompt.sh
   fi
 }
 
@@ -39,7 +39,7 @@ shell_configure_rc_d() {
   grep '/etc/bashrc.d' /etc/bash.bashrc > /dev/null
 
   if [ $? -ne 0 ]; then
-    helper_sudo "bash -c \"cat \\\"${CONFIG_DIR}/files/bashrcd.sh\\\" >> /etc/bash.bashrc\""
+    helper_sudo bash -c "cat \"${CONFIG_DIR}/files/bashrcd.sh\" >> /etc/bash.bashrc"
   fi
 
   if [ ! -f "${HOME}/.bashrc" ]; then
@@ -54,7 +54,7 @@ shell_configure_rc_d() {
   fi
 
   if [ ! -d /etc/bashrc.d ]; then
-    helper_sudo "mkdir -p /etc/bashrc.d"
+    helper_sudo mkdir -p /etc/bashrc.d
   fi
 }
 
