@@ -18,6 +18,18 @@ apt_maybe_install_direnv() {
   fi
 }
 
+apt_maybe_install_ibus_mozc() {
+  helper_dontfail apt_maybe_install ibus-mozc
+
+  if [ -d /etc/bashrc.d ]; then
+    if [ ! -f /etc/bashrc.d/ibus.sh ]; then
+      helper_sudo cp "${CONFIG_DIR}/files/ibus.sh" /etc/bashrc.d/ibus.sh
+    fi
+
+    source /etc/bashrc.d/ibus.sh
+  fi
+}
+
 apt_maybe_install_gpu_firmware() {
   lspci | grep -E 'VGA\b.*\bAMD\b.*\bRadeon\b' > /dev/null
 
@@ -41,7 +53,6 @@ apt_setup() {
     curl \
     git \
     htop \
-    ibus-mozc \
     iftop \
     iotop \
     jq \
@@ -57,5 +68,6 @@ apt_setup() {
   helper_dontfail apt_maybe_install_gpu_firmware
 
   apt_maybe_install_direnv
+  apt_maybe_install_ibus_mozc
   apt_maybe_install_terminator
 }
