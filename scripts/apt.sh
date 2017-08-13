@@ -41,6 +41,7 @@ apt_setup() {
     curl \
     git \
     htop \
+    ibus-mozc \
     iftop \
     iotop \
     jq \
