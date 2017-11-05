@@ -3,7 +3,20 @@ go_cache_valid() {
 }
 
 go_cache_update() {
-  wget -qO- https://storage.googleapis.com/golang/ > "${CONFIG_DIR}/cache/go"
+  local TEMP_DIR="$(mktemp -d)"
+  local SEQUENCE=0
+  local NEXT_PAGE_TOKEN=""
+
+  while [ "${NEXT_PAGE_TOKEN}" != "?pageToken=" ]; do
+    wget -qO- "https://www.googleapis.com/storage/v1/b/golang/o${NEXT_PAGE_TOKEN}" > "${TEMP_DIR}/go.${SEQUENCE}"
+
+    NEXT_PAGE_TOKEN="?pageToken=$(cat ${TEMP_DIR}/go.${SEQUENCE} | jq -r 'if has("nextPageToken") then .nextPageToken else empty end')"
+    SEQUENCE=$((SEQUENCE+1))
+  done
+
+  cat "${TEMP_DIR}/go."* | jq -r '.items[] | select(.name | test("go.*linux-amd64"))' | jq -rs 'flatten' > "${CONFIG_DIR}/cache/go"
+
+  rm -r "${TEMP_DIR}"
 
   if [ -f "${CONFIG_DIR}/cache/go" ]; then
     helper_dontfail go_cache_valid
@@ -28,7 +41,7 @@ go_update_available() {
 }
 
 go_newest_version() {
-  cat "${CONFIG_DIR}/cache/go" | grep -oPm1 "(?<=<Key>)[^<]+\.linux-amd64\.[^<]+" | grep -v sha256 | sed 's/^\(go[0-9]\+\.[0-9]\+\)\(\.linux\)/\1.0xyz\2/' | sort -V | sed 's/\.0xyz//' | tail -n 1
+  cat "${CONFIG_DIR}/cache/go" | jq -r '.[]|select(.name|test("^go\\d+(\\.\\d+)*.linux-amd64.tar.gz$"))|.name' | sed 's/^\(go[0-9]\+\.[0-9]\+\)\(\.linux\)/\1.0xyz\2/' | sort -V | sed 's/\.0xyz//' | tail -n 1
 }
 
 go_current_version() {
