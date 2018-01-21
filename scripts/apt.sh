@@ -52,6 +52,7 @@ apt_setup() {
     build-essential \
     dfc \
     curl \
+    dnsutils \
     git \
     htop \
     iftop \
@@ -59,6 +60,7 @@ apt_setup() {
     jq \
     libavcodec-extra \
     ltrace \
+    net-tools \
     strace \
     vlc \
     vim \
