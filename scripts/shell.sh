@@ -53,6 +53,17 @@ shell_configure_rc_d() {
     bash -c "cat \"${CONFIG_DIR}/files/bashrcd.sh\" >> ${HOME}/.bashrc"
   fi
 
+  if [ ! -f "${HOME}/.profile" ]; then
+    echo -e "\033[31mUnknown .profile\033[0m"
+    exit 1
+  fi
+
+  grep '/etc/bashrc.d' "${HOME}/.profile" > /dev/null
+
+  if [ $? -ne 0 ]; then
+    bash -c "cat \"${CONFIG_DIR}/files/bashrcd.profile\" >> ${HOME}/.profile"
+  fi
+
   if [ ! -d /etc/bashrc.d ]; then
     helper_sudo mkdir -p /etc/bashrc.d
   fi
