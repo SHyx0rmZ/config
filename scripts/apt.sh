@@ -48,6 +48,7 @@ apt_maybe_install_terminator() {
 
 apt_setup() {
   for package in \
+    apt-transport-https \
     build-essential \
     dfc \
     curl \
