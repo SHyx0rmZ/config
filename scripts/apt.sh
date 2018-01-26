@@ -64,6 +64,7 @@ apt_setup() {
     strace \
     vlc \
     vim \
+    xfonts-mplus \
   ; do
     helper_dontfail apt_maybe_install "${package}"
   done
