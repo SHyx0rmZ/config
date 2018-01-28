@@ -53,6 +53,7 @@ apt_setup() {
     dfc \
     curl \
     dnsutils \
+    fonts-mplus \
     git \
     htop \
     iftop \
@@ -64,7 +65,6 @@ apt_setup() {
     strace \
     vlc \
     vim \
-    xfonts-mplus \
   ; do
     helper_dontfail apt_maybe_install "${package}"
   done
