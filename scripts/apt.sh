@@ -70,6 +70,7 @@ apt_setup() {
     jq \
     libavcodec-extra \
     ltrace \
+    lynx \
     net-tools \
     strace \
     vlc \
