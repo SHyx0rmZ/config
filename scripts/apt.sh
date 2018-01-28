@@ -42,6 +42,7 @@ apt_maybe_install_gpu_firmware() {
 
   if [ $? -eq 0 ]; then
     apt_maybe_install amdgpu
+    apt_maybe_install vulkan-amdgpu-pro
     apt_maybe_add_non_free
     apt_maybe_install firmware-amd-graphics
   fi
