@@ -1,5 +1,5 @@
 apt_maybe_add_non_free() {
-  if ! grep -P '^deb(-src)?\s.*\s(non-free)(\s.*|$)' /etc/apt/sources.list; then
+  if ! grep -P '^deb(-src)?\s.*\s(non-free)(\s.*|$)' /etc/apt/sources.list > /dev/null; then
     helper_sudo sed 's/^deb\(-src\)\?\s.*/\0 non-free/' -i /etc/apt/sources.list
     helper_sudo apt update
   fi
