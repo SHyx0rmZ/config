@@ -41,6 +41,8 @@ apt_maybe_install_gpu_firmware() {
   lspci | grep -E 'VGA\b.*\bAMD\b.*\bRadeon\b' > /dev/null
 
   if [ $? -eq 0 ]; then
+    apt_maybe_install amdgpu
+    apt_maybe_add_non_free
     apt_maybe_install firmware-amd-graphics
   fi
 }
@@ -54,8 +56,6 @@ apt_maybe_install_terminator() {
 }
 
 apt_setup() {
-  apt_maybe_add_non_free
-
   for package in \
     apt-transport-https \
     build-essential \
