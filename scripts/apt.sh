@@ -1,3 +1,10 @@
+apt_maybe_add_non_free() {
+  if ! grep -P '^deb(-src)?\s.*\s(non-free)(\s.*|$)' /etc/apt/sources.list; then
+    helper_sudo sed 's/^deb\(-src\)\?\s.*/\0 non-free/' -i /etc/apt/sources.list
+    helper_sudo apt update
+  fi
+}
+
 apt_maybe_install() {
   dpkg-query -s "${1}" > /dev/null 2>&1
 
@@ -47,6 +54,8 @@ apt_maybe_install_terminator() {
 }
 
 apt_setup() {
+  apt_maybe_add_non_free
+
   for package in \
     apt-transport-https \
     build-essential \
