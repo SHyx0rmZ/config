@@ -33,7 +33,7 @@ config_setup() {
 
   cd "${CONFIG_DIR}"
 
-  if [ "$(git pull)" != "Already up-to-date." ]; then
+  if [ "$(git pull)" != "Already up-to-date." ] && [ "$(git pull)" != "Already up to date." ]; then
     exec "${0}"
   fi
 
