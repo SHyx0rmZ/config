@@ -63,6 +63,7 @@ apt_setup() {
     lynx \
     net-tools \
     strace \
+    tree \
     vlc \
     vim \
   ; do
