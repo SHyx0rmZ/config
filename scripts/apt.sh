@@ -62,6 +62,7 @@ apt_setup() {
     ltrace \
     lynx \
     net-tools \
+    pwgen \
     strace \
     tree \
     vlc \
